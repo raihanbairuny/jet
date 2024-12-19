@@ -58,7 +58,8 @@ def process_files(gl_file, log_file, client_name):
         bf = benford(gl)
 
         # Simpan hasil ke file Excel
-        save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, client_name)
+        # save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, client_name)
+        return save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, client_name)
     else:
         # Jalankan fungsi tanpa Log
         rg = check_for_gaps_in_JE_ID(gl)
@@ -73,7 +74,8 @@ def process_files(gl_file, log_file, client_name):
         bf = benford(gl)
 
         # Simpan hasil ke file Excel
-        save_results_to_excel(rg, None, None, igl , de, rae, lp, we, ne, ru, ra, bf, client_name)
+        # save_results_to_excel(rg, None, None, igl , de, rae, lp, we, ne, ru, ra, bf, client_name)
+        return save_results_to_excel(rg, None, None, igl , de, rae, lp, we, ne, ru, ra, bf, client_name)
 
 # Fungsi untuk menyimpan hasil ke file Excel
 def save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, client_name):
