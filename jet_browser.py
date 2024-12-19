@@ -339,7 +339,7 @@ def main():
             try:
                 output = process_files(gl_file, log_file, client_name)
                 st.success("Processing complete! Download your file below:")
-                st.markdown(f'<a href="data:application/octet-stream;base64,{base64.b64encode(output).decode()}" download="{client_name}_GL_Log_Analysis.xlsx">Download Excel File</a>', unsafe_allow_html=True)
+                st.markdown(f'<a href="data:application/octet-stream;base64,{base64.b64encode(output).decode()}" download="Report Jet - {client_name}.xlsx">Download Excel File</a>', unsafe_allow_html=True)
             except Exception as e:
                 st.error(f"Error: {e}")
             # if output:
