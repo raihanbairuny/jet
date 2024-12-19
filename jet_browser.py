@@ -95,7 +95,7 @@ def save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, clie
         bf.to_excel(writer, sheet_name="benford's_law", index=False)
 
     output.seek(0)
-    return output
+    return output.get_value()
 
 # Fungsi untuk memeriksa celah dalam ID Jurnal
 def check_for_gaps_in_JE_ID(GL_Detail, Journal_ID_Column='Journal_ID'):
@@ -334,13 +334,21 @@ def main():
     if st.button("Submit"):
         if client_name and gl_file:
             output = process_files(gl_file, log_file, client_name)
-            st.success("Processing completed!")
-            st.download_button(
-                label="Download Report",
-                data=output,
-                file_name=f"report_jet_{client_name}.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            )
+            if output:
+                st.success("Processing complete! Download your file below:")
+                st.download_button(
+                    label="Download Excel File",
+                    data=output,
+                    file_name=f"{client_name}_GL_Log_Analysis.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                )
+            # st.success("Processing completed!")
+            # st.download_button(
+            #     label="Download Report",
+            #     data=output,
+            #     file_name=f"report_jet_{client_name}.xlsx",
+            #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            # )
         else:
             st.warning("Please upload the GL file and enter the client name.")        
 
