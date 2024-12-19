@@ -95,7 +95,7 @@ def save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, clie
         bf.to_excel(writer, sheet_name="benford's_law", index=False)
 
     output.seek(0)
-    return output.get_value()
+    return output.getvalue()
 
 # Fungsi untuk memeriksa celah dalam ID Jurnal
 def check_for_gaps_in_JE_ID(GL_Detail, Journal_ID_Column='Journal_ID'):
