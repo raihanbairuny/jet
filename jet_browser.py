@@ -76,8 +76,8 @@ def process_files(gl_file, log_file, client_name):
 
 # Fungsi untuk menyimpan hasil ke file Excel
 def save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, client_name):
-    output_file = f"report_jet_{client_name}.xlsx"
-    with pd.ExcelWriter(output_file) as writer:
+    output = BytesIO()
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
         # if rg:
         #     pd.DataFrame({'range_gap_awal': [i[0] for i in rg], 'range_gap_akhir': [i[-1] for i in rg]}).to_excel(writer, sheet_name="check_for_gaps", index=False)
         rg.to_excel(writer, sheet_name='Range_Gaps', index=False)
@@ -93,6 +93,9 @@ def save_results_to_excel(rg, ec, ac, igl, de, rae, lp, we, ne, ru, ra, bf, clie
         ru.to_excel(writer, sheet_name="rare_users", index=False)
         ra.to_excel(writer, sheet_name="rare_accounts", index=False)
         bf.to_excel(writer, sheet_name="benford's_law", index=False)
+
+    output.seek(0)
+    return output
 
 # Fungsi untuk memeriksa celah dalam ID Jurnal
 def check_for_gaps_in_JE_ID(GL_Detail, Journal_ID_Column='Journal_ID'):
