@@ -333,11 +333,11 @@ def main():
     #     process_files(gl_file, log_file, client_name)
     if st.button("Submit"):
         if client_name and gl_file:
-            process_files(gl_file, log_file, client_name)
+            output = process_files(gl_file, log_file, client_name)
             st.success("Processing completed!")
             st.download_button(
                 label="Download Report",
-                data=save_results_to_excel(),
+                data=output,
                 file_name=f"report_jet_{client_name}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
