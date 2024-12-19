@@ -333,22 +333,19 @@ def main():
     #     process_files(gl_file, log_file, client_name)
     if st.button("Submit"):
         if client_name and gl_file:
-            output = process_files(gl_file, log_file, client_name)
-            if output:
+            try:
+                output = process_files(gl_file, log_file, client_name)
                 st.success("Processing complete! Download your file below:")
-                st.download_button(
-                    label="Download Excel File",
-                    data=output,
-                    file_name=f"{client_name}_GL_Log_Analysis.xlsx",
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
-            # st.success("Processing completed!")
-            # st.download_button(
-            #     label="Download Report",
-            #     data=output,
-            #     file_name=f"report_jet_{client_name}.xlsx",
-            #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            # )
+                st.markdown(f'<a href="data:application/octet-stream;base64,{base64.b64encode(output).decode()}" download="{client_name}_GL_Log_Analysis.xlsx">Download Excel File</a>', unsafe_allow_html=True)
+            except Exception as e:
+                st.error(f"Error: {e}")
+            # if output:
+            #     st.download_button(
+            #         label="Download Excel File",
+            #         data=output,
+            #         file_name=f"{client_name}_GL_Log_Analysis.xlsx",
+            #         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            #     )
         else:
             st.warning("Please upload the GL file and enter the client name.")        
 
