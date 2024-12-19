@@ -341,14 +341,14 @@ def main():
             #     file_name=f"report_jet_{client_name}.xlsx",
             #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             # )
+        else:
+            st.warning("Please upload the GL file and enter the client name.")
         st.download_button(
                 label="Download Report",
                 data=output,
                 file_name=f"report_jet_{client_name}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-        else:
-            st.warning("Please upload the GL file and enter the client name.")
         
 
 if __name__ == "__main__":
