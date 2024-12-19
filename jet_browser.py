@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import streamlit as st
 import matplotlib
 from io import BytesIO
+import base64
 
 pd.set_option('display.max_columns', None)
 
