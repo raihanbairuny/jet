@@ -335,21 +335,14 @@ def main():
         if client_name and gl_file:
             output = process_files(gl_file, log_file, client_name)
             st.success("Processing completed!")
-            # st.download_button(
-            #     label="Download Report",
-            #     data=output,
-            #     file_name=f"report_jet_{client_name}.xlsx",
-            #     mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            # )
-        else:
-            st.warning("Please upload the GL file and enter the client name.")
-        st.download_button(
+            st.download_button(
                 label="Download Report",
                 data=output,
                 file_name=f"report_jet_{client_name}.xlsx",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
-        
+        else:
+            st.warning("Please upload the GL file and enter the client name.")        
 
 if __name__ == "__main__":
     main()
