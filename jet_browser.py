@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime, timedelta
 import streamlit as st
 import matplotlib
+from io import BytesIO
 
 pd.set_option('display.max_columns', None)
 
@@ -330,7 +331,13 @@ def main():
     if st.button("Submit"):
         if client_name and gl_file:
             process_files(gl_file, log_file, client_name)
-            st.success("Processing completed! The report has been saved.")
+            st.success("Processing completed!")
+            st.download_button(
+                label="Download Report",
+                data=output,
+                file_name=f"report_jet_{client_name}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
         else:
             st.warning("Please upload the GL file and enter the client name.")
 
