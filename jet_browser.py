@@ -26,6 +26,9 @@ def process_files(gl_file, log_file, client_name):
     colz = dict(zip(glmap['Description Awal'], glmap['Jet']))
     gl.rename(columns=colz, inplace=True)
 
+    if 'Amount_Credit_Debit_Indicator' not in gl.columns:
+        gl['Amount_Credit_Debit_Indicator'] = gl['Amount'].apply(lambda x: 'H' if x < 0 else 'S')
+
     # Cek dan hitung kolom Net
     if 'Amount' in gl.columns:
         if not ((gl['Amount'] > 0).any() and (gl['Amount'] < 0).any()):
